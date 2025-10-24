@@ -32,18 +32,16 @@ public class CachingBreedFetcher implements BreedFetcher {
         String url = "https://dog.ceo/api/breeds/list/all";
 
         if (cache.has(breed)) {
-            List<String> subBreeds = new ArrayList<>();
             JSONArray subBreedsArray = cache.getJSONArray(breed);
             JSONArray subSubBreedsArray = subBreedsArray.getJSONArray(0);
             String str = subSubBreedsArray.toString();
-            subBreeds = Arrays.asList(str.split(","));
+            return Arrays.asList(str.split(","));
 
 
             // Convert to ArrayList<String>
 //            for (int i = 0; i < subBreedsArray.length(); i++) {
 //                subBreeds.add(subBreedsArray.getString(i));
 //            }
-            return subBreeds;
         }
         else {
 
